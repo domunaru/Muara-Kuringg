@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muara Kuring — Seafood & Indonesian Cuisine | Golf Island PIK</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#FFF9EB', 100: '#FFF0C7', 200: '#FFE08A', 300: '#FFCB4D',
+                            400: '#FFB620', 500: '#E09800', 600: '#C27B00', 700: '#9E5C00',
+                            800: '#804A00', 900: '#6A3D00',
+                        },
+                        wine: {
+                            50: '#FBF5F5', 100: '#F5E6E6', 200: '#E8C4C4', 300: '#D49A9A',
+                            400: '#B86B6B', 500: '#9B4545', 600: '#7D2E2E', 700: '#5F1F1F',
+                            800: '#4A1818', 900: '#3B1313',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::selection { background: #FFE08A; color: #6A3D00; }
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-800 { animation-delay: 0.8s; }
+        
+        .shimmer-gold {
+            background: linear-gradient(90deg, #C27B00, #FFB620, #FFE08A, #FFB620, #C27B00);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s linear infinite;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.5) 100%);
+        }
+        
+        .menu-card:hover .menu-img { transform: scale(1.08); }
+        
+        .glass-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .gold-glow {
+            box-shadow: 0 0 30px rgba(255,182,32,0.15), 0 0 60px rgba(255,182,32,0.05);
+        }
+        
+        .nav-scrolled {
+            background: rgba(10, 10, 10, 0.95) !important;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+        
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #C27B00, transparent);
+            height: 1px;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.8);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #171717; }
+        ::-webkit-scrollbar-thumb { background: #C27B00; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FFB620; }
+
+        .menu-tab.active {
+            color: #FFB620;
+            border-bottom-color: #FFB620;
+        }
+        
+        .hamburger-line { transition: all 0.3s ease; }
+        .hamburger-active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger-active .hamburger-line:nth-child(2) { opacity: 0; }
+        .hamburger-active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+        .menu-img-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 700ms ease;
+        }
+    </style>
+</head>
+<body class="bg-neutral-950 text-neutral-200 overflow-x-hidden">
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#beranda" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-lg group-hover:shadow-gold-400/30 transition-shadow duration-300">
+                        <span class="font-serif text-neutral-900 font-bold text-lg">M</span>
+                    </div>
+                    <div>
+                        <span class="font-serif text-xl font-semibold text-white tracking-wide">Muara Kuring</span>
+                        <span class="hidden sm:block text-[10px] text-gold-400 tracking-[0.2em] uppercase -mt-0.5">Seafood & Cuisine</span>
+                    </div>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="#beranda" class="nav-link px-4 py-2 text-sm text-neutral-300 hover:text-gold-400 transition-colors duration-200 rounded-lg hover:bg-white/5">Beranda</a>
+                    <a href="#tentang" class="nav-link px-4 py-2 text-sm text-neutral-300 hover:text-gold-400 transition-colors duration-200 rounded-lg hover:bg-white/5">Tentang</a>
+                    <a href="#menu" class="nav-link px-4 py-2 text-sm text-neutral-300 hover:text-gold-400 transition-colors duration-200 rounded-lg hover:bg-white/5">Menu</a>
+                    <a href="#galeri" class="nav-link px-4 py-2 text-sm text-neutral-300 hover:text-gold-400 transition-colors duration-200 rounded-lg hover:bg-white/5">Galeri</a>
+                    <a href="#acara" class="nav-link px-4 py-2 text-sm text-neutral-300 hover:text-gold-400 transition-colors duration-200 rounded-lg hover:bg-white/5">Acara</a>
+                    <a href="#lokasi" class="nav-link px-4 py-2 text-sm text-neutral-300 hover:text-gold-400 transition-colors duration-200 rounded-lg hover:bg-white/5">Lokasi</a>
+                </div>
+
+                <div class="hidden xl:flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-xs text-neutral-400 max-w-xs">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold-400 flex-shrink-0"></i>
+                    <span class="truncate">Ruko Golf Island, Jl. PIK No.7 Blok A, Penjaringan</span>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="https://wa.me/6281234567890" target="_blank" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-gold-500 to-gold-600 text-neutral-900 text-sm font-medium rounded-full hover:from-gold-400 hover:to-gold-500 transition-all duration-300 shadow-lg hover:shadow-gold-500/25">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                        Reservasi
+                    </a>
+                    <button id="mobileToggle" class="lg:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+                        <span class="hamburger-line w-6 h-0.5 bg-white rounded-full"></span>
+                        <span class="hamburger-line w-6 h-0.5 bg-white rounded-full"></span>
+                        <span class="hamburger-line w-6 h-0.5 bg-white rounded-full"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="lg:hidden hidden bg-neutral-950/98 backdrop-blur-xl border-t border-white/5">
+            <div class="px-6 py-6 space-y-1">
+                <a href="#beranda" class="mobile-link block px-4 py-3 text-neutral-200 hover:text-gold-400 hover:bg-white/5 rounded-lg transition-colors">Beranda</a>
+                <a href="#tentang" class="mobile-link block px-4 py-3 text-neutral-200 hover:text-gold-400 hover:bg-white/5 rounded-lg transition-colors">Tentang</a>
+                <a href="#menu" class="mobile-link block px-4 py-3 text-neutral-200 hover:text-gold-400 hover:bg-white/5 rounded-lg transition-colors">Menu</a>
+                <a href="#galeri" class="mobile-link block px-4 py-3 text-neutral-200 hover:text-gold-400 hover:bg-white/5 rounded-lg transition-colors">Galeri</a>
+                <a href="#acara" class="mobile-link block px-4 py-3 text-neutral-200 hover:text-gold-400 hover:bg-white/5 rounded-lg transition-colors">Acara</a>
+                <a href="#lokasi" class="mobile-link block px-4 py-3 text-neutral-200 hover:text-gold-400 hover:bg-white/5 rounded-lg transition-colors">Lokasi</a>
+                <div class="pt-4 border-t border-white/10">
+                    <div class="flex items-start gap-2 px-4 py-3 text-xs text-neutral-400">
+                        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold-400 mt-0.5 flex-shrink-0"></i>
+                        <span>Ruko Golf Island, Jl. Pantai Indah Kapuk No.7 Blok A, Kec. Penjaringan, Jkt Utara, DKI Jakarta 14430</span>
+                    </div>
+                    <a href="https://wa.me/6281234567890" class="flex items-center justify-center gap-2 mx-4 mt-3 px-5 py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-neutral-900 font-medium rounded-full">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                        Reservasi Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section id="beranda" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://picsum.photos/seed/grilled-squid-prawns-seafood-platter-dark/1920/1080.jpg" alt="Muara Kuring Restaurant" class="w-full h-full object-cover">
+            <div class="hero-overlay absolute inset-0"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-neutral-950/40"></div>
+        </div>
+
+        <div class="absolute top-20 right-10 w-72 h-72 bg-gold-500/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 left-10 w-96 h-96 bg-gold-600/5 rounded-full blur-3xl animate-float" style="animation-delay: 1.5s;"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <div class="opacity-0 animate-fade-in-up">
+                <span class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-gold-500/30 bg-gold-500/10 text-gold-300 text-xs tracking-[0.2em] uppercase mb-8">
+                    <span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>
+                    Est. Golf Island, PIK Jakarta
+                </span>
+            </div>
+            
+            <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold text-white leading-[0.95] tracking-tight opacity-0 animate-fade-in-up delay-200">
+                Muara<br>
+                <span class="shimmer-gold">Kuring</span>
+            </h1>
+            
+            <p class="mt-6 md:mt-8 text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-in-up delay-400 font-light">
+                Pengalaman kuliner seafood autentik Nusantara dengan sentuhan modern, di kawasan paling eksklusif Pantai Indah Kapuk.
+            </p>
+            
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up delay-600">
+                <a href="#menu" class="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-neutral-900 font-medium rounded-full hover:from-gold-400 hover:to-gold-500 transition-all duration-300 shadow-xl hover:shadow-gold-500/30">
+                    Lihat Menu Kami
+                    <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
+                </a>
+                <a href="#lokasi" class="flex items-center gap-3 px-8 py-4 border border-white/20 text-white rounded-full hover:bg-white/10 transition-all duration-300">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-gold-400"></i>
+                    Temukan Lokasi
+                </a>
+            </div>
+
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in delay-800">
+                <div class="flex flex-col items-center gap-2 text-neutral-500">
+                    <span class="text-[10px] tracking-[0.2em] uppercase">Scroll</span>
+                    <div class="w-px h-8 bg-gradient-to-b from-neutral-500 to-transparent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="tentang" class="relative py-24 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950"></div>
+        <div class="section-divider w-full mb-24"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div class="relative group">
+                    <div class="relative rounded-3xl overflow-hidden aspect-[4/5] gold-glow">
+                        <img src="https://picsum.photos/seed/seafood-restaurant-interior-warm-lighting-wooden-table/800/1000.jpg" alt="Interior Muara Kuring" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 md:right-8 glass-card rounded-2xl p-5 animate-float">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center">
+                                <i data-lucide="award" class="w-6 h-6 text-neutral-900"></i>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Top Rated</p>
+                                <div class="flex items-center gap-1 mt-0.5">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 text-gold-400 fill-gold-400"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 text-gold-400 fill-gold-400"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 text-gold-400 fill-gold-400"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 text-gold-400 fill-gold-400"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 text-gold-400 fill-gold-400"></i>
+                                    <span class="text-xs text-neutral-400 ml-1">4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="inline-block text-gold-400 text-xs tracking-[0.2em] uppercase font-medium mb-4">Tentang Kami</span>
+                    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight tracking-tight">
+                        Cerita di Balik<br>
+                        <span class="text-gold-400">Rasa Nusantara</span>
+                    </h2>
+                    <div class="mt-8 space-y-5 text-neutral-400 leading-relaxed">
+                        <p>
+                            <strong class="text-neutral-200">Muara Kuring</strong> hadir sebagai destinasi kuliner seafood premium di kawasan Golf Island, Pantai Indah Kapuk. Kami menghadirkan cita rasa autentik laut Nusantara yang diracik dengan penuh cinta dan keahlian.
+                        </p>
+                        <p>
+                            Setiap hidangan kami disiapkan menggunakan bahan-bahan segar pilihan, diolah dengan resep turun-temurun yang dipadukan dengan teknik memasak modern, menghasilkan pengalaman gastronomi yang tak terlupakan.
+                        </p>
+                    </div>
+
+                    <div class="mt-10 grid grid-cols-3 gap-6">
+                        <div class="text-center lg:text-left">
+                            <p class="font-serif text-3xl md:text-4xl font-semibold text-gold-400">8+</p>
+                            <p class="text-xs text-neutral-500 mt-1 uppercase tracking-wider">Tahun Melayani</p>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <p class="font-serif text-3xl md:text-4xl font-semibold text-gold-400">50+</p>
+                            <p class="text-xs text-neutral-500 mt-1 uppercase tracking-wider">Menu Pilihan</p>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <p class="font-serif text-3xl md:text-4xl font-semibold text-gold-400">10K+</p>
+                            <p class="text-xs text-neutral-500 mt-1 uppercase tracking-wider">Pelanggan Puas</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 p-6 rounded-2xl border border-gold-500/20 bg-gold-500/5">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i data-lucide="quote" class="w-5 h-5 text-gold-400"></i>
+                            </div>
+                            <p class="font-serif text-neutral-300 italic leading-relaxed text-sm">
+                                "Muara Kuring bukan sekadar restoran — ini adalah perjalanan rasa yang membawa Anda menyusuri kekayaan laut Indonesia."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MENU ========== -->
+    <section id="menu" class="relative py-24 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-neutral-950"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="inline-block text-gold-400 text-xs tracking-[0.2em] uppercase font-medium mb-4">Menu Pilihan</span>
+                <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight tracking-tight">
+                    Hidangan <span class="text-gold-400">Istimewa</span>
+                </h2>
+                <p class="mt-5 text-neutral-400 leading-relaxed">
+                    Nikmati ragam menu seafood dan masakan Nusantara yang diracik dari bahan-bahan segar pilihan.
+                </p>
+            </div>
+
+            <div class="flex items-center justify-center gap-1 mb-12 overflow-x-auto pb-2">
+                <button class="menu-tab active px-6 py-3 text-sm font-medium border-b-2 border-transparent text-neutral-400 hover:text-gold-400 transition-colors whitespace-nowrap" data-tab="semua">Semua</button>
+                <button class="menu-tab px-6 py-3 text-sm font-medium border-b-2 border-transparent text-neutral-400 hover:text-gold-400 transition-colors whitespace-nowrap" data-tab="seafood">Seafood</button>
+                <button class="menu-tab px-6 py-3 text-sm font-medium border-b-2 border-transparent text-neutral-400 hover:text-gold-400 transition-colors whitespace-nowrap" data-tab="nusantara">Nusantara</button>
+                <button class="menu-tab px-6 py-3 text-sm font-medium border-b-2 border-transparent text-neutral-400 hover:text-gold-400 transition-colors whitespace-nowrap" data-tab="snack">Snack & Sides</button>
+                <button class="menu-tab px-6 py-3 text-sm font-medium border-b-2 border-transparent text-neutral-400 hover:text-gold-400 transition-colors whitespace-nowrap" data-tab="minuman">Minuman</button>
+            </div>
+
+            <div id="menuGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- 1. Cumi Cabe Hijau -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="seafood">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/stir-fried-squid-green-chili-sauce-indonesian-food/600/400.jpg" alt="Cumi Cabe Hijau" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 bg-gold-500/90 text-neutral-900 text-[10px] font-semibold tracking-wider uppercase rounded-full">Best Seller</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Cumi Cabe Hijau</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Cumi segar dengan saus cabe hijau pedas</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 118K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Sotong Goreng Telur Asin -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="seafood">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/deep-fried-calamari-salted-egg-yolk-crispy/600/400.jpg" alt="Sotong Goreng Telur Asin" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 bg-wine-500/90 text-white text-[10px] font-semibold tracking-wider uppercase rounded-full">Favorit</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Sotong Goreng Telur Asin</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Sotong renyah bertabur telur asin gurih</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 103K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Pepes Tahu -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="nusantara">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/steamed-tofu-banana-leaf-pepes-indonesian-traditional/600/400.jpg" alt="Pepes Tahu" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Pepes Tahu</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Tahu pepes bumbu tradisional dibungkus daun</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 45K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Udang Saus Padang -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="seafood">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/large-prawns-spicy-padang-red-sauce-seafood/600/400.jpg" alt="Udang Saus Padang" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 bg-gold-500/90 text-neutral-900 text-[10px] font-semibold tracking-wider uppercase rounded-full">Best Seller</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Udang Saus Padang</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Udang besar saus padang pedas mantap</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 135K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Ikan Bakar Jimbaran -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="seafood">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/grilled-fish-bali-jimbaran-style-charcoal-seafood/600/400.jpg" alt="Ikan Bakar Jimbaran" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Ikan Bakar Jimbaran</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Ikan bakar bumbu Jimbaran khas Bali</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 150K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Kerapu Steam Hongkong -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="seafood">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/steamed-grouper-fish-ginger-soy-sauce-hongkong-style/600/400.jpg" alt="Kerapu Steam Hongkong" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 bg-wine-500/90 text-white text-[10px] font-semibold tracking-wider uppercase rounded-full">Premium</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Kerapu Steam Hongkong</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Kerapu segar steam ala Hongkong</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 220K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. French Fries -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="snack">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/crispy-golden-french-fries-ketchup-dipping-restaurant/600/400.jpg" alt="French Fries" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">French Fries</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Kentang goreng crispy dengan saus pilihan</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 38K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Chicken Nuggets -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="snack">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/crispy-chicken-nuggets-fried-golden-brown-plate/600/400.jpg" alt="Chicken Nuggets" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Chicken Nuggets</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Nugget ayam crispy homemade</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 42K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. Nasi Goreng Seafood -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="nusantara">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/indonesian-fried-rice-seafood-shrimp-squid-nasi-goreng/600/400.jpg" alt="Nasi Goreng Seafood" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 bg-gold-500/90 text-neutral-900 text-[10px] font-semibold tracking-wider uppercase rounded-full">Best Seller</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Nasi Goreng Seafood</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Nasi goreng spesial dengan aneka seafood</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 88K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Es Kelapa Muda -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="minuman">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/fresh-young-coconut-ice-drink-tropical-beverage/600/400.jpg" alt="Es Kelapa Muda" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Es Kelapa Muda</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Kelapa muda segar dengan sirup spesial</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 32K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. Jus Mangga Segar -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="minuman">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/fresh-mango-juice-glass-tropical-fruit-drink/600/400.jpg" alt="Jus Mangga Segar" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Jus Mangga Segar</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Jus mangga harum manis pilihan</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 28K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. Ayam Bakar Taliwang -->
+                <div class="menu-card group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500" data-category="nusantara">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/seed/grilled-chicken-taliwang-lombok-spicy-chili-sambal/600/400.jpg" alt="Ayam Bakar Taliwang" class="menu-img menu-img-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Ayam Bakar Taliwang</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Ayam bakar pedas khas Lombok</p>
+                            </div>
+                            <span class="font-serif text-gold-400 font-semibold whitespace-nowrap">Rp 95K</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-14">
+                <p class="text-neutral-500 text-sm mb-5">Dan masih banyak menu lainnya yang tersedia di restoran kami</p>
+                <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 border border-gold-500/30 text-gold-400 rounded-full hover:bg-gold-500/10 transition-all duration-300 text-sm font-medium">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                    Lihat Menu Lengkap
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SPECIAL BANNER ========== -->
+    <section class="relative py-20 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://picsum.photos/seed/mixed-seafood-platter-oyster-prawn-crab-lobster-elegant-dark/1920/600.jpg" alt="Special" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/70"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-wine-500/20 border border-wine-500/30 text-wine-300 text-xs tracking-wider uppercase mb-6">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                Paket Spesial
+            </span>
+            <h2 class="font-serif text-3xl md:text-5xl font-semibold text-white leading-tight">
+                Seafood Platter <span class="text-gold-400">Premium</span>
+            </h2>
+            <p class="mt-5 text-neutral-300 max-w-xl mx-auto leading-relaxed">
+                Nikmati paket lengkap seafood untuk keluarga dan sahabat. Cocok untuk perayaan, arisan, atau gathering spesial Anda.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://wa.me/6281234567890?text=Halo%20Muara%20Kuring%2C%20saya%20ingin%20pesan%20Seafood%20Platter%20Premium" target="_blank" class="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-neutral-900 font-medium rounded-full hover:from-gold-400 hover:to-gold-500 transition-all duration-300 shadow-xl">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    Pesan Sekarang
+                </a>
+                <span class="font-serif text-2xl text-gold-400">Mulai Rp 500K</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GALLERY ========== -->
+    <section id="galeri" class="relative py-24 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-neutral-950"></div>
+        <div class="section-divider w-full mb-24"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="inline-block text-gold-400 text-xs tracking-[0.2em] uppercase font-medium mb-4">Galeri</span>
+                <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight tracking-tight">
+                    Suasana & <span class="text-gold-400">Keindahan</span>
+                </h2>
+                <p class="mt-5 text-neutral-400 leading-relaxed">
+                    Intip suasana hangat dan menawan di Muara Kuring melalui lensa kami.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="gallery-item relative row-span-2 rounded-2xl overflow-hidden cursor-pointer group">
+                    <img src="https://picsum.photos/seed/cozy-seafood-restaurant-interior-warm-ambiance-wooden/500/800.jpg" alt="Interior" class="w-full h-full object-cover transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-end p-4">
+                        <span class="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">Interior Restoran</span>
+                    </div>
+                </div>
+                <div class="gallery-item relative rounded-2xl overflow-hidden cursor-pointer group">
+                    <img src="https://picsum.photos/seed/assorted-seafood-plate-shrimp-squid-clam-restaurant/500/400.jpg" alt="Seafood Plate" class="w-full h-full object-cover transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-end p-4">
+                        <span class="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">Seafood Platter</span>
+                    </div>
+                </div>
+                <div class="gallery-item relative rounded-2xl overflow-hidden cursor-pointer group">
+                    <img src="https://picsum.photos/seed/elegant-dining-table-set-up-candles-seafood-restaurant/500/400.jpg" alt="Table Setup" class="w-full h-full object-cover transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-end p-4">
+                        <span class="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">Table Setup</span>
+                    </div>
+                </div>
+                <div class="gallery-item relative row-span-2 rounded-2xl overflow-hidden cursor-pointer group">
+                    <img src="https://picsum.photos/seed/whole-grilled-fish-charcoal-banana-leaf-indonesian-seafood/500/800.jpg" alt="Grilled Fish" class="w-full h-full object-cover transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-end p-4">
+                        <span class="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">Ikan Bakar Premium</span>
+                    </div>
+                </div>
+                <div class="gallery-item relative rounded-2xl overflow-hidden cursor-pointer group">
+                    <img src="https://picsum.photos/seed/restaurant-bar-counter-cocktail-drinks-seafood-dining/500/400.jpg" alt="Bar Area" class="w-full h-full object-cover transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-end p-4">
+                        <span class="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">Bar Area</span>
+                    </div>
+                </div>
+                <div class="gallery-item relative rounded-2xl overflow-hidden cursor-pointer group">
+                    <img src="https://picsum.photos/seed/spicy-green-chili-squid-cumi-cabe-hijau-close-up/500/400.jpg" alt="Cumi Cabe Hijau" class="w-full h-full object-cover transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-end p-4">
+                        <span class="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">Cumi Cabe Hijau</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EVENTS ========== -->
+    <section id="acara" class="relative py-24 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950"></div>
+        <div class="section-divider w-full mb-24"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="inline-block text-gold-400 text-xs tracking-[0.2em] uppercase font-medium mb-4">Acara & Hampers</span>
+                <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight tracking-tight">
+                    Rayakan <span class="text-gold-400">Momen Spesial</span>
+                </h2>
+                <p class="mt-5 text-neutral-400 leading-relaxed">
+                    Kami menyediakan paket hampers dan menu spesial untuk berbagai perayaan — dari Idul Fitri, Natal, Imlek, hingga acara perusahaan Anda.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://picsum.photos/seed/eid-mubarak-hampers-gift-box-food-parcel-green-gold/600/400.jpg" alt="Hampers Idul Fitri" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="px-3 py-1 bg-emerald-500/90 text-white text-[10px] font-semibold tracking-wider uppercase rounded-full">Idul Fitri</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Hampers Idul Fitri</h3>
+                        <p class="text-sm text-neutral-400 mt-2 leading-relaxed">Paket hampers eksklusif berisi kue kering, olahan seafood kering, dan parcel premium untuk merayakan Lebaran.</p>
+                    </div>
+                </div>
+
+                <div class="group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://picsum.photos/seed/chinese-new-year-gift-box-hampers-red-gold-food-parcel/600/400.jpg" alt="Chinese New Year" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="px-3 py-1 bg-red-500/90 text-white text-[10px] font-semibold tracking-wider uppercase rounded-full">Imlek</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Chinese New Year Hampers</h3>
+                        <p class="text-sm text-neutral-400 mt-2 leading-relaxed">Hampers meriah bertema Imlek dengan aneka kue dan makanan spesial untuk keluarga tercinta.</p>
+                    </div>
+                </div>
+
+                <div class="group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://picsum.photos/seed/christmas-dinner-feast-elegant-restaurant-holiday-party/600/400.jpg" alt="Natal & Tahun Baru" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="px-3 py-1 bg-red-600/90 text-white text-[10px] font-semibold tracking-wider uppercase rounded-full">Natal</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Natal & Tahun Baru</h3>
+                        <p class="text-sm text-neutral-400 mt-2 leading-relaxed">Menu dinner spesial Natal dan pesta tahun baru dengan suasana mewah dan penuh kehangatan.</p>
+                    </div>
+                </div>
+
+                <div class="group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://picsum.photos/seed/kartini-day-indonesian-women-celebration-flower-kebaya/600/400.jpg" alt="Hari Kartini" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="px-3 py-1 bg-purple-500/90 text-white text-[10px] font-semibold tracking-wider uppercase rounded-full">Kartini</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Selamat Hari Kartini</h3>
+                        <p class="text-sm text-neutral-400 mt-2 leading-relaxed">Merayakan kekuatan perempuan Indonesia dengan menu spesial dan dekorasi bertema Kartini.</p>
+                    </div>
+                </div>
+
+                <div class="group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://picsum.photos/seed/corporate-dinner-event-business-gathering-elegant-venue/600/400.jpg" alt="Corporate Event" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="px-3 py-1 bg-blue-500/90 text-white text-[10px] font-semibold tracking-wider uppercase rounded-full">Corporate</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Acara Perusahaan</h3>
+                        <p class="text-sm text-neutral-400 mt-2 leading-relaxed">Paket meeting, dinner, dan gathering perusahaan dengan kapasitas hingga 100 orang.</p>
+                    </div>
+                </div>
+
+                <div class="group glass-card rounded-2xl overflow-hidden hover:border-gold-500/30 transition-all duration-500">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://picsum.photos/seed/birthday-party-restaurant-decorations-cake-celebration-dinner/600/400.jpg" alt="Birthday Party" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="px-3 py-1 bg-pink-500/90 text-white text-[10px] font-semibold tracking-wider uppercase rounded-full">Ulang Tahun</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-lg font-semibold text-white group-hover:text-gold-400 transition-colors">Pesta Ulang Tahun</h3>
+                        <p class="text-sm text-neutral-400 mt-2 leading-relaxed">Rayakan hari spesial Anda bersama keluarga dan sahabat dengan paket ulang tahun eksklusif.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="relative py-24 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-neutral-950"></div>
+        <div class="section-divider w-full mb-24"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="inline-block text-gold-400 text-xs tracking-[0.2em] uppercase font-medium mb-4">Testimoni</span>
+                <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight tracking-tight">
+                    Kata <span class="text-gold-400">Mereka</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-2xl p-8 hover:border-gold-500/20 transition-all duration-500">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    </div>
+                    <p class="text-neutral-300 text-sm leading-relaxed italic">"Cumi cabe hijaunya juara! Pedasnya pas, cuminya segar banget. Tempatnya juga cozy, cocok buat kumpul-kumpul keluarga."</p>
+                    <div class="mt-6 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-neutral-900 font-semibold text-sm">R</div>
+                        <div>
+                            <p class="text-white text-sm font-medium">Rina Susanti</p>
+                            <p class="text-neutral-500 text-xs">Food Blogger</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 hover:border-gold-500/20 transition-all duration-500">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    </div>
+                    <p class="text-neutral-300 text-sm leading-relaxed italic">"Sotong telur asinnya bikin nagih! Setiap ke PIK pasti mampir ke Muara Kuring. Pelayanannya ramah dan profesional."</p>
+                    <div class="mt-6 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-neutral-900 font-semibold text-sm">B</div>
+                        <div>
+                            <p class="text-white text-sm font-medium">Budi Hartono</p>
+                            <p class="text-neutral-500 text-xs">Pengusaha</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 hover:border-gold-500/20 transition-all duration-500">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    </div>
+                    <p class="text-neutral-300 text-sm leading-relaxed italic">"Hampers Imlek dari sini selalu jadi favorit keluarga. Kemasannya mewah, rasanya konsisten enak. Highly recommended!"</p>
+                    <div class="mt-6 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-neutral-900 font-semibold text-sm">S</div>
+                        <div>
+                            <p class="text-white text-sm font-medium">Sari Wijaya</p>
+                            <p class="text-neutral-500 text-xs">Interior Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== LOCATION ========== -->
+    <section id="lokasi" class="relative py-24 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950"></div>
+        <div class="section-divider w-full mb-24"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="inline-block text-gold-400 text-xs tracking-[0.2em] uppercase font-medium mb-4">Lokasi & Kontak</span>
+                <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight tracking-tight">
+                    Kunjungi <span class="text-gold-400">Kami</span>
+                </h2>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-3 rounded-3xl overflow-hidden h-[400px] md:h-[500px] border border-white/10">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5!2d106.7429!3d-6.1088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1d54e4b5e3b3%3A0x3b2b2b2b2b2b2b2b!2sMuara%20Kuring%20Golf%20Island!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                        width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(0.95) contrast(0.9);" 
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="glass-card rounded-2xl p-6 hover:border-gold-500/20 transition-all duration-500">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-gold-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium mb-2">Alamat</h4>
+                                <p class="text-neutral-400 text-sm leading-relaxed">Ruko Golf Island, Jl. Pantai Indah Kapuk No.7 Blok A, Kecamatan Penjaringan, Jkt Utara, Daerah Khusus Ibukota Jakarta 14430</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-6 hover:border-gold-500/20 transition-all duration-500">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5 text-gold-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium mb-3">Jam Operasional</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between gap-8">
+                                        <span class="text-neutral-400">Senin – Jumat</span>
+                                        <span class="text-gold-400 font-medium">11:00 – 22:00</span>
+                                    </div>
+                                    <div class="flex justify-between gap-8">
+                                        <span class="text-neutral-400">Sabtu – Minggu</span>
+                                        <span class="text-gold-400 font-medium">10:00 – 23:00</span>
+                                    </div>
+                                    <div class="flex justify-between gap-8 pt-2 border-t border-white/5">
+                                        <span class="text-neutral-400">Hari Libur Nasional</span>
+                                        <span class="text-wine-400 font-medium text-xs">Cek Instagram</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="https://wa.me/6281234567890" target="_blank" class="glass-card rounded-2xl p-5 hover:border-gold-500/20 transition-all duration-500 text-center group">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="message-circle" class="w-5 h-5 text-emerald-400"></i>
+                            </div>
+                            <p class="text-white text-sm font-medium group-hover:text-gold-400 transition-colors">WhatsApp</p>
+                            <p class="text-neutral-500 text-xs mt-1">0812-3456-7890</p>
+                        </a>
+                        <a href="https://instagram.com/muarakuring" target="_blank" class="glass-card rounded-2xl p-5 hover:border-gold-500/20 transition-all duration-500 text-center group">
+                            <div class="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="instagram" class="w-5 h-5 text-pink-400"></i>
+                            </div>
+                            <p class="text-white text-sm font-medium group-hover:text-gold-400 transition-colors">Instagram</p>
+                            <p class="text-neutral-500 text-xs mt-1">@muarakuring</p>
+                        </a>
+                    </div>
+
+                    <a href="https://wa.me/6281234567890?text=Halo%20Muara%20Kuring%2C%20saya%20ingin%20melakukan%20reservasi" target="_blank" class="flex items-center justify-center gap-3 w-full px-6 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-neutral-900 font-medium rounded-2xl hover:from-gold-400 hover:to-gold-500 transition-all duration-300 shadow-xl hover:shadow-gold-500/25">
+                        <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                        Reservasi Meja Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-neutral-950"></div>
+        <div class="section-divider w-full"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="lg:col-span-1">
+                    <a href="#beranda" class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center">
+                            <span class="font-serif text-neutral-900 font-bold text-lg">M</span>
+                        </div>
+                        <div>
+                            <span class="font-serif text-xl font-semibold text-white">Muara Kuring</span>
+                        </div>
+                    </a>
+                    <p class="text-neutral-500 text-sm leading-relaxed">Seafood & Indonesian Cuisine. Pengalaman kuliner autentik Nusantara di kawasan Golf Island, PIK Jakarta.</p>
+                    <div class="flex items-center gap-3 mt-6">
+                        <a href="https://instagram.com/muarakuring" target="_blank" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:text-gold-400 hover:border-gold-500/30 transition-all duration-300">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://wa.me/6281234567890" target="_blank" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:text-gold-400 hover:border-gold-500/30 transition-all duration-300">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:text-gold-400 hover:border-gold-500/30 transition-all duration-300">
+                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:text-gold-400 hover:border-gold-500/30 transition-all duration-300">
+                            <i data-lucide="twitter" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-medium mb-5">Navigasi</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#beranda" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Beranda</a></li>
+                        <li><a href="#tentang" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Tentang Kami</a></li>
+                        <li><a href="#menu" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Menu</a></li>
+                        <li><a href="#galeri" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Galeri</a></li>
+                        <li><a href="#acara" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Acara & Hampers</a></li>
+                        <li><a href="#lokasi" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Lokasi</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-medium mb-5">Kategori Menu</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#menu" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Seafood Spesial</a></li>
+                        <li><a href="#menu" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Masakan Nusantara</a></li>
+                        <li><a href="#menu" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Snack & Sides</a></li>
+                        <li><a href="#menu" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Minuman Segar</a></li>
+                        <li><a href="#menu" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Paket Seafood Platter</a></li>
+                        <li><a href="#menu" class="text-neutral-500 text-sm hover:text-gold-400 transition-colors">Menu Anak</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-medium mb-5">Kontak</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0"></i>
+                            <span class="text-neutral-500 text-sm leading-relaxed">Ruko Golf Island, Jl. Pantai Indah Kapuk No.7 Blok A, Penjaringan, Jakarta Utara 14430</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>
+                            <span class="text-neutral-500 text-sm">0812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>
+                            <span class="text-neutral-500 text-sm">info@muarakuring.id</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="clock" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>
+                            <span class="text-neutral-500 text-sm">11:00 – 22:00 WIB</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-neutral-600 text-xs">© 2025 Muara Kuring. All rights reserved.</p>
+                <p class="text-neutral-700 text-xs">Seafood & Indonesian Cuisine — Golf Island, PIK Jakarta</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== FLOATING WHATSAPP ========== -->
+    <a href="https://wa.me/6281234567890?text=Halo%20Muara%20Kuring%2C%20saya%20ingin%20bertanya" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center shadow-xl hover:bg-emerald-400 hover:scale-110 transition-all duration-300 group" aria-label="WhatsApp">
+        <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
+        <span class="absolute -top-10 right-0 bg-neutral-800 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">Chat Kami</span>
+    </a>
+
+    <!-- ========== BACK TO TOP ========== -->
+    <button id="backToTop" class="fixed bottom-6 left-6 z-50 w-12 h-12 bg-neutral-800/80 backdrop-blur-sm border border-white/10 rounded-full flex items-center justify-center text-neutral-400 hover:text-gold-400 hover:border-gold-500/30 transition-all duration-300 opacity-0 translate-y-4 pointer-events-none" aria-label="Back to top">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        lucide.createIcons();
+
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+            if (window.scrollY > 600) {
+                backToTop.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                backToTop.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            } else {
+                backToTop.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                backToTop.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            }
+        });
+
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('hamburger-active');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('hamburger-active');
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuCards = document.querySelectorAll('.menu-card');
+
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                menuTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const category = tab.dataset.tab;
+
+                menuCards.forEach((card, index) => {
+                    const shouldShow = category === 'semua' || card.dataset.category === category;
+                    if (shouldShow) {
+                        card.style.display = '';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 60);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => { card.style.display = 'none'; }, 300);
+                    }
+                });
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    entry.target.style.opacity = '1';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('section > div > .text-center, .glass-card, .menu-card, .gallery-item').forEach(el => {
+            if (!el.closest('#beranda')) {
+                el.style.opacity = '0';
+                observer.observe(el);
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+                }
+            });
+        });
+
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 120) current = section.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('text-gold-400');
+                link.classList.add('text-neutral-300');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-gold-400');
+                    link.classList.remove('text-neutral-300');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
